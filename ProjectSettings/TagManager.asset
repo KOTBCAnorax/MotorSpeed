@@ -50,3 +50,6 @@ TagManager:
   - name: Foreground
     uniqueID: 3543628353
     locked: 0
+  - name: Motorcycle
+    uniqueID: 97650361
+    locked: 0
