@@ -4,29 +4,13 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private float _movementSpeed = 0.1f;
     private void Update()
     {
-        HandleInput();
+        UpdateQuaternion();
     }
 
-    private void HandleInput()
+    private void UpdateQuaternion()
     {
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Translate(Vector3.right * _movementSpeed);
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.Translate(Vector3.left * _movementSpeed);
-        }
-        else if (Input.GetKey(KeyCode.UpArrow))
-        {
-            transform.Translate(Vector3.up * _movementSpeed);
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            transform.Translate(Vector3.down * _movementSpeed);
-        }
+        transform.rotation = Quaternion.identity;
     }
 }

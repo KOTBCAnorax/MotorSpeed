@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BackgroundParallax : MonoBehaviour
 {
-    [SerializeField] private Transform _camera;
+    [SerializeField] private Transform _motorcycle;
     [SerializeField] private float _parallaxCoef = 0.9f;
     [SerializeField] private float _offsetY = 0f;
 
@@ -15,8 +15,8 @@ public class BackgroundParallax : MonoBehaviour
 
     private void FollowCamera()
     {
-        float x = _camera.position.x * _parallaxCoef;
-        float y = _camera.position.y + _offsetY;
+        float x = _motorcycle.position.x * _parallaxCoef;
+        float y = _motorcycle.position.y + _offsetY;
         float z = transform.position.z;
 
         transform.position = new Vector3(x, y, z);
