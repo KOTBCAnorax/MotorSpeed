@@ -648,9 +648,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 656310338}
     m_Modifications:
     - target: {fileID: 536297802, guid: 6a9e9bd6f5bafe04799130dea4465d31, type: 3}
-      propertyPath: MainCamera
+      propertyPath: _camera
       value: 
       objectReference: {fileID: 519420032}
+    - target: {fileID: 536297802, guid: 6a9e9bd6f5bafe04799130dea4465d31, type: 3}
+      propertyPath: _offsetY
+      value: -12
+      objectReference: {fileID: 0}
     - target: {fileID: 4088318533149881954, guid: 6a9e9bd6f5bafe04799130dea4465d31, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -709,7 +713,7 @@ PrefabInstance:
     m_TransformParent: {fileID: 656310338}
     m_Modifications:
     - target: {fileID: 758217329, guid: 68ca78c7fc81e2e4ca946e11cbc50643, type: 3}
-      propertyPath: MainCamera
+      propertyPath: _camera
       value: 
       objectReference: {fileID: 519420032}
     - target: {fileID: 7138168942762457056, guid: 68ca78c7fc81e2e4ca946e11cbc50643, type: 3}

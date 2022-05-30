@@ -95,6 +95,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4efd33ff06d21d54495ddb46b14fd666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainCamera: {fileID: 0}
+  _camera: {fileID: 0}
   _parallaxCoef: 0.4
-  _yOffset: -12
+  _offsetY: -12
