@@ -521,7 +521,7 @@ WheelJoint2D:
     m_DampingRatio: 0
     m_Frequency: 5
     m_Angle: 90
-  m_UseMotor: 1
+  m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: -2000
     m_MaximumMotorForce: 10000
@@ -547,7 +547,7 @@ WheelJoint2D:
     m_Angle: 90
   m_UseMotor: 1
   m_Motor:
-    m_MotorSpeed: -2000
+    m_MotorSpeed: -10000
     m_MaximumMotorForce: 10000
 --- !u!1 &8576747955164492035
 GameObject:
