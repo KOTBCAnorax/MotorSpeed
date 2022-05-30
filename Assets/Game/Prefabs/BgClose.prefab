@@ -98,4 +98,3 @@ MonoBehaviour:
   MainCamera: {fileID: 0}
   _parallaxCoef: 0.4
   _yOffset: -12
-  _spriteRenderer: {fileID: 4088318533149881953}
