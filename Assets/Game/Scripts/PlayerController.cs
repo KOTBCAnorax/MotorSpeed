@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D _rider;
-    [SerializeField] private WheelJoint2D rearWheel;
-    [SerializeField] private float _tiltForce = 100;
+    [SerializeField] private Rigidbody2D _rb;
+    [SerializeField] private WheelJoint2D _rearWheel;
+    [SerializeField] private float _rotationSpeed = 1;
     [SerializeField] private float _motorSpeed = 1000;
+    [SerializeField] private float _maxMotorTorque = float.PositiveInfinity;
 
     private void Update()
     {
@@ -19,34 +20,34 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
-            rearWheel.useMotor = true;
-            rearWheel.motor = GetNewMotor(1);
+            _rearWheel.useMotor = true;
+            _rearWheel.motor = GetNewMotor(1);
         }
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            rearWheel.useMotor = true;
-            rearWheel.motor = GetNewMotor(-1);
+            _rearWheel.useMotor = true;
+            _rearWheel.motor = GetNewMotor(-1);
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.A))
         {
-            _rider.AddForce(Vector2.right * _tiltForce, ForceMode2D.Force);
+            _rb.AddTorque(_rotationSpeed * Time.fixedDeltaTime);
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.D))
         {
-            _rider.AddForce(Vector2.left * _tiltForce, ForceMode2D.Force);
+            _rb.AddTorque(-1 * _rotationSpeed * Time.fixedDeltaTime);
         }
 
-        if (!Input.anyKey && rearWheel.useMotor)
+        if (!Input.anyKey && _rearWheel.useMotor)
         {
-            rearWheel.useMotor = false;
+            _rearWheel.useMotor = false;
         }
     }
 
     private JointMotor2D GetNewMotor(int sign)
     {
-        return new JointMotor2D { motorSpeed = sign * _motorSpeed, maxMotorTorque = float.PositiveInfinity };
+        return new JointMotor2D { motorSpeed = sign * _motorSpeed, maxMotorTorque = _maxMotorTorque };
     }
 }

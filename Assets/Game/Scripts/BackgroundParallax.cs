@@ -16,7 +16,7 @@ public class BackgroundParallax : MonoBehaviour
     private void FollowCamera()
     {
         float x = _motorcycle.position.x * _parallaxCoef;
-        float y = _motorcycle.position.y + _offsetY;
+        float y = _motorcycle.position.y * _parallaxCoef + _offsetY;
         float z = transform.position.z;
 
         transform.position = new Vector3(x, y, z);

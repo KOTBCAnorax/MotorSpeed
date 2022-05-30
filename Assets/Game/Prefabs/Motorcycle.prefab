@@ -60,7 +60,7 @@ Camera:
   far clip plane: 1000
   field of view: 90
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -190,6 +190,8 @@ GameObject:
   - component: {fileID: 4512710871133680236}
   - component: {fileID: 2060485429071784675}
   - component: {fileID: 3352318359080295366}
+  - component: {fileID: 2104375398}
+  - component: {fileID: 2104375395}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -205,7 +207,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 763582031752709493}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.028, y: 1.278, z: 0}
+  m_LocalPosition: {x: 0.002, y: 1.283, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 898145222500560713}
@@ -298,7 +300,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.12, y: -0.27}
-  m_ConnectedAnchor: {x: 0.08199978, y: 0.5720005}
+  m_ConnectedAnchor: {x: 0.05600071, y: 0.57699966}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -307,6 +309,34 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: -10
     m_UpperAngle: 0
+--- !u!58 &2104375398
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763582031752709493}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.06, y: 0.0000038146973}
+  serializedVersion: 2
+  m_Radius: 0.4
+--- !u!114 &2104375395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763582031752709493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f208394f3ab63444989a7d2e72066ce2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1592961991400919671
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,7 +574,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.03, y: 0.06}
-  m_ConnectedAnchor: {x: 0.026000023, y: 0.39200115}
+  m_ConnectedAnchor: {x: 0.026000023, y: 0.3920021}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -674,7 +704,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.18, y: -0.06}
-  m_ConnectedAnchor: {x: 0.45199966, y: 0.6019993}
+  m_ConnectedAnchor: {x: 0.45200062, y: 0.6019974}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -698,7 +728,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.24, y: 0.07}
-  m_ConnectedAnchor: {x: 0.18599987, y: -0.13000107}
+  m_ConnectedAnchor: {x: 0.18600082, y: -0.13000107}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -800,7 +830,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 5197961613606294368}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: abb94e5c6c291d74984bfda9bca2a6c6, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -948,7 +978,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.15949337, y: -0.48040956}
-  m_ConnectedAnchor: {x: -0.10750675, y: 0.35558987}
+  m_ConnectedAnchor: {x: -0.10750675, y: 0.35559082}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1077,7 +1107,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.0948873, y: -0.27243245}
-  m_ConnectedAnchor: {x: 0.15188742, y: -0.5784321}
+  m_ConnectedAnchor: {x: 0.1518879, y: -0.578434}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1261,7 +1291,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 3
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -1327,7 +1357,7 @@ WheelJoint2D:
     m_Angle: 90
   m_UseMotor: 0
   m_Motor:
-    m_MotorSpeed: -2000
+    m_MotorSpeed: 0
     m_MaximumMotorForce: 10000
 --- !u!235 &1202381116065982339
 WheelJoint2D:
@@ -1365,10 +1395,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24f4d8d55f46d314b91c3899c2be2008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rider: {fileID: 4794069429910242236}
-  rearWheel: {fileID: 1202381116065982339}
-  _tiltForce: 100
-  _motorSpeed: 5000
+  _rb: {fileID: 3688675294973688849}
+  _rearWheel: {fileID: 1202381116065982339}
+  _rotationSpeed: 500
+  _motorSpeed: 1500
+  _maxMotorTorque: 3000
 --- !u!1 &8576747955164492035
 GameObject:
   m_ObjectHideFlags: 0
