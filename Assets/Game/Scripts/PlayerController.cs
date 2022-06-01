@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,39 +12,67 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _motorSpeed = 1000;
     [SerializeField] private float _maxMotorTorque = float.PositiveInfinity;
 
+    private int _leanValue = 0;
+
     private void Update()
     {
-        HandleInput();    
+        HandleInput();
     }
 
     private void HandleInput()
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
-            _rearWheel.useMotor = true;
-            _rearWheel.motor = GetNewMotor(1);
+            MoveBack();
         }
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            _rearWheel.useMotor = true;
-            _rearWheel.motor = GetNewMotor(-1);
+            MoveForward();
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            _rb.AddTorque(_rotationSpeed * Time.fixedDeltaTime);
+            Lean(1);
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            _rb.AddTorque(-1 * _rotationSpeed * Time.fixedDeltaTime);
+            Lean(-1);
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            SetLean(-1);
         }
 
         if (!Input.anyKey && _rearWheel.useMotor)
         {
             _rearWheel.useMotor = false;
         }
+    }
+
+    public void MoveForward()
+    {
+        _rearWheel.useMotor = true;
+        _rearWheel.motor = GetNewMotor(-1);
+    }
+
+    public void MoveBack()
+    {
+        _rearWheel.useMotor = true;
+        _rearWheel.motor = GetNewMotor(1);
+    }
+
+    public void Lean(int sign)
+    {
+        _rb.AddTorque(sign * _rotationSpeed * Time.fixedDeltaTime);
+    }
+
+    public void SetLean(int lean)
+    {
+        _leanValue = lean;
     }
 
     private JointMotor2D GetNewMotor(int sign)
