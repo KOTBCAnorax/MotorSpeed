@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,14 +22,15 @@ public class PlayerController : MonoBehaviour
 
     private void HandleInput()
     {
+
         if (Input.GetKeyDown(KeyCode.S))
         {
-            MoveBack();
+            Move(1);
         }
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            MoveForward();
+            Move(-1);
         }
 
         if (Input.GetKey(KeyCode.A))
@@ -41,10 +43,10 @@ public class PlayerController : MonoBehaviour
             Lean(-1);
         }
 
-
-        if (Input.GetKeyDown(KeyCode.B))
+        // For android
+        if (_leanValue != 0)
         {
-            SetLean(-1);
+            Lean(_leanValue);
         }
 
         if (!Input.anyKey && _rearWheel.useMotor)
@@ -53,16 +55,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void MoveForward()
+    public void Move(int sign)
     {
         _rearWheel.useMotor = true;
-        _rearWheel.motor = GetNewMotor(-1);
-    }
-
-    public void MoveBack()
-    {
-        _rearWheel.useMotor = true;
-        _rearWheel.motor = GetNewMotor(1);
+        _rearWheel.motor = GetNewMotor(sign);
     }
 
     public void Lean(int sign)
@@ -70,9 +66,24 @@ public class PlayerController : MonoBehaviour
         _rb.AddTorque(sign * _rotationSpeed * Time.fixedDeltaTime);
     }
 
-    public void SetLean(int lean)
+    // For android
+    public void LeanBack(InputAction.CallbackContext callbackContext)
     {
-        _leanValue = lean;
+        if (callbackContext.phase == InputActionPhase.Started)
+        {
+            _leanValue = 5;
+        }
+        else if (callbackContext.phase == InputActionPhase.Canceled) _leanValue = 0;
+    }
+
+    // For android
+    public void LeanForward(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.phase == InputActionPhase.Started)
+        {
+            _leanValue = -5;
+        }
+        else if (callbackContext.phase == InputActionPhase.Canceled) _leanValue = 0;
     }
 
     private JointMotor2D GetNewMotor(int sign)
