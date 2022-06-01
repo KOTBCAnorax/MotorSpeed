@@ -22,43 +22,38 @@ public class PlayerController : MonoBehaviour
 
     private void HandleInput()
     {
-
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            Move(1);
-        }
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            Move(-1);
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            Lean(1);
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            Lean(-1);
-        }
-
-        // For android
         if (_leanValue != 0)
         {
             Lean(_leanValue);
         }
+    }
 
-        if (!Input.anyKey && _rearWheel.useMotor)
+    public void MoveBack(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.phase == InputActionPhase.Started)
+        {
+            _rearWheel.useMotor = true;
+            _rearWheel.motor = GetNewMotor(1);
+        }
+
+        if (callbackContext.phase == InputActionPhase.Canceled)
         {
             _rearWheel.useMotor = false;
         }
     }
 
-    public void Move(int sign)
+    public void MoveForward(InputAction.CallbackContext callbackContext)
     {
-        _rearWheel.useMotor = true;
-        _rearWheel.motor = GetNewMotor(sign);
+        if (callbackContext.phase == InputActionPhase.Started)
+        {
+            _rearWheel.useMotor = true;
+            _rearWheel.motor = GetNewMotor(-1);
+        }
+
+        if (callbackContext.phase == InputActionPhase.Canceled)
+        {
+            _rearWheel.useMotor = false;
+        }
     }
 
     public void Lean(int sign)
@@ -66,22 +61,19 @@ public class PlayerController : MonoBehaviour
         _rb.AddTorque(sign * _rotationSpeed * Time.fixedDeltaTime);
     }
 
-    // For android
     public void LeanBack(InputAction.CallbackContext callbackContext)
     {
         if (callbackContext.phase == InputActionPhase.Started)
         {
-            _leanValue = 5;
+            _leanValue = 10;
         }
         else if (callbackContext.phase == InputActionPhase.Canceled) _leanValue = 0;
     }
-
-    // For android
     public void LeanForward(InputAction.CallbackContext callbackContext)
     {
         if (callbackContext.phase == InputActionPhase.Started)
         {
-            _leanValue = -5;
+            _leanValue = -10;
         }
         else if (callbackContext.phase == InputActionPhase.Canceled) _leanValue = 0;
     }
