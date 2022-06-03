@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _rotationSpeed = 1;
     [SerializeField] private float _motorSpeed = 1000;
     [SerializeField] private float _maxMotorTorque = float.PositiveInfinity;
-    [SerializeField] private float _generalLeanValue = 5f;
+    [SerializeField] private float _absoluteLeanValue = 5f;
     [SerializeField] private float _handheldDeviceModifier = 2f;
 
     private float _currentLeanValue = 0;
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         if (SystemInfo.deviceType == DeviceType.Handheld)
         {
-            _generalLeanValue *= _handheldDeviceModifier; ;
+            _absoluteLeanValue *= _handheldDeviceModifier;
         }
     }
 
@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
     {
         if (callbackContext.phase == InputActionPhase.Started)
         {
-            _currentLeanValue = _generalLeanValue;
+            _currentLeanValue = _absoluteLeanValue;
         }
         else if (callbackContext.phase == InputActionPhase.Canceled)
         {
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
     {
         if (callbackContext.phase == InputActionPhase.Started)
         {
-            _currentLeanValue = -_generalLeanValue;
+            _currentLeanValue = -_absoluteLeanValue;
         }
         else if (callbackContext.phase == InputActionPhase.Canceled)
         {
