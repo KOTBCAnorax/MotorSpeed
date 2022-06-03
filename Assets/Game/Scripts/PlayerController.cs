@@ -12,23 +12,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _rotationSpeed = 1;
     [SerializeField] private float _motorSpeed = 1000;
     [SerializeField] private float _maxMotorTorque = float.PositiveInfinity;
+    [SerializeField] private float _generalLeanValue = 5f;
+    [SerializeField] private float _handheldDeviceModifier = 2f;
 
-    private float _leanValue = 0;
-    private float _leanBackValue = 5f;
-    private float _leanForwardValue = -5f;
+    private float _currentLeanValue = 0;
 
     private void Start()
     {
         if (SystemInfo.deviceType == DeviceType.Handheld)
         {
-            _leanBackValue = 10f;
-            _leanForwardValue = -10f;
+            _generalLeanValue *= _handheldDeviceModifier; ;
         }
     }
 
     private void FixedUpdate()
     {
-        Lean(_leanValue);
+        Lean(_currentLeanValue);
     }
 
     public void MoveBack(InputAction.CallbackContext callbackContext)
@@ -68,22 +67,22 @@ public class PlayerController : MonoBehaviour
     {
         if (callbackContext.phase == InputActionPhase.Started)
         {
-            _leanValue = _leanBackValue;
+            _currentLeanValue = _generalLeanValue;
         }
         else if (callbackContext.phase == InputActionPhase.Canceled)
         {
-            _leanValue = 0;
+            _currentLeanValue = 0;
         }
     }
     public void LeanForward(InputAction.CallbackContext callbackContext)
     {
         if (callbackContext.phase == InputActionPhase.Started)
         {
-            _leanValue = _leanForwardValue;
+            _currentLeanValue = -_generalLeanValue;
         }
         else if (callbackContext.phase == InputActionPhase.Canceled)
         {
-            _leanValue = 0;
+            _currentLeanValue = 0;
         }
     }
 
