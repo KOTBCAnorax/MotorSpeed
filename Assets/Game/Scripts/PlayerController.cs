@@ -13,16 +13,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _motorSpeed = 1000;
     [SerializeField] private float _maxMotorTorque = float.PositiveInfinity;
 
-    private int _leanValue = 0;
-    private int _leanBackValue = 5;
-    private int _leanForwardValue = -5;
+    private float _leanValue = 0;
+    private float _leanBackValue = 5f;
+    private float _leanForwardValue = -5f;
 
     private void Start()
     {
         if (SystemInfo.deviceType == DeviceType.Handheld)
         {
-            _leanBackValue = 10;
-            _leanForwardValue = -10;
+            _leanBackValue = 10f;
+            _leanForwardValue = -10f;
         }
     }
 
@@ -59,9 +59,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Lean(int sign)
+    public void Lean(float leanValue)
     {
-        _rb.AddTorque(sign * _rotationSpeed * Time.fixedDeltaTime);
+        _rb.AddTorque(leanValue * _rotationSpeed * Time.fixedDeltaTime);
     }
 
     public void LeanBack(InputAction.CallbackContext callbackContext)
