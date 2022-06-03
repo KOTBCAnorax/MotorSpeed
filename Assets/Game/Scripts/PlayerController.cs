@@ -14,18 +14,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _maxMotorTorque = float.PositiveInfinity;
 
     private int _leanValue = 0;
+    private int _leanBackValue = 5;
+    private int _leanForwardValue = -5;
 
-    private void Update()
+    private void Start()
     {
-        HandleInput();
+        if (SystemInfo.deviceType == DeviceType.Handheld)
+        {
+            _leanBackValue = 10;
+            _leanForwardValue = -10;
+        }
     }
 
-    private void HandleInput()
+    private void FixedUpdate()
     {
-        if (_leanValue != 0)
-        {
-            Lean(_leanValue);
-        }
+        Lean(_leanValue);
     }
 
     public void MoveBack(InputAction.CallbackContext callbackContext)
@@ -65,17 +68,23 @@ public class PlayerController : MonoBehaviour
     {
         if (callbackContext.phase == InputActionPhase.Started)
         {
-            _leanValue = 10;
+            _leanValue = _leanBackValue;
         }
-        else if (callbackContext.phase == InputActionPhase.Canceled) _leanValue = 0;
+        else if (callbackContext.phase == InputActionPhase.Canceled)
+        {
+            _leanValue = 0;
+        }
     }
     public void LeanForward(InputAction.CallbackContext callbackContext)
     {
         if (callbackContext.phase == InputActionPhase.Started)
         {
-            _leanValue = -10;
+            _leanValue = _leanForwardValue;
         }
-        else if (callbackContext.phase == InputActionPhase.Canceled) _leanValue = 0;
+        else if (callbackContext.phase == InputActionPhase.Canceled)
+        {
+            _leanValue = 0;
+        }
     }
 
     private JointMotor2D GetNewMotor(int sign)
